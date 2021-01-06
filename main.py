@@ -28,12 +28,14 @@ SOFTWARE.
 # Date:         5th January 2021
 # Last Updated: 6th January 2021
 #######
+
+mapSx = 8
+mapSy = 15
+
 def printMap(px, py, GameMap):
     import os
     os.system("cls")
     output = ""
-    mapSx = 8
-    mapSy = 15
     for x in range(mapSx):
         for y in range(mapSy):
             if(px == x and py == y): output += "P"
