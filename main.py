@@ -1,8 +1,8 @@
 #######
 # Project:      Simple 2D Console Movement System
-# Creator:      Martus
+# Creator:      Martin
 # Date:         5th January 2021
-# Last Updated: 5th January 2021
+# Last Updated: 6th January 2021
 #######
 def printMap(px, py, GameMap):
     import os
@@ -18,16 +18,29 @@ def printMap(px, py, GameMap):
         print(output)
         output = ""
         
+def colission(x,y):
+    if(GameMap[x][y] == 1): return True
+    else: return False
+
 def checkInput(px, py, GameMap):
     import sys
     print("Movement commands: W,A,S,D for movement. Q to exit")
     userInput = input(">  ")
     userInput.lower()
     if userInput == 'q': sys.exit()
-    elif userInput == 'w': px-=1
-    elif userInput == 's': px+=1
-    elif userInput == 'a': py-=1
-    elif userInput == 'd': py+=1
+
+    elif userInput == 'w': 
+        if not colission(px-1, py): px-=1
+
+    elif userInput == 's': 
+        if not colission(px+1,py): px+=1
+
+    elif userInput == 'a': 
+        if not colission(px,py-1): py-=1
+
+    elif userInput == 'd': 
+        if not colission(px,py+1): py+=1
+
     cordinates = [px, py]
     return cordinates
 
