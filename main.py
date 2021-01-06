@@ -24,22 +24,48 @@ def colission(x,y):
 
 def checkInput(px, py, GameMap):
     import sys
-    print("Movement commands: W,A,S,D for movement. Q to exit")
+    speed = 1
+    print(
+    "Movement commands: W,A,S,D for movement. Q to exit."
+    +
+    "\nyou can also add a number between 1 and 9 in front of the movement commands."
+    +
+    "\nExample: 4w "
+    )
     userInput = input(">  ")
-    userInput.lower()
-    if userInput == 'q': sys.exit()
 
-    elif userInput == 'w': 
-        if not colission(px-1, py): px-=1
+    try:
+        ammount = int(userInput[0])*speed
+        command = str(userInput[1])
+        command.lower()
 
-    elif userInput == 's': 
-        if not colission(px+1,py): px+=1
+        if command == 'w': 
+            if not colission(px-ammount, py): px-=ammount
 
-    elif userInput == 'a': 
-        if not colission(px,py-1): py-=1
+        elif command == 's': 
+            if not colission(px+ammount,py): px+=ammount
 
-    elif userInput == 'd': 
-        if not colission(px,py+1): py+=1
+        elif command == 'a': 
+            if not colission(px,py-ammount): py-=ammount
+
+        elif command == 'd': 
+            if not colission(px,py+ammount): py+=ammount
+
+    except:
+        userInput.lower()
+        if userInput == 'q': sys.exit()
+
+        elif userInput == 'w': 
+            if not colission(px-speed, py): px-=speed
+
+        elif userInput == 's': 
+            if not colission(px+speed,py): px+=speed
+
+        elif userInput == 'a': 
+            if not colission(px,py-speed): py-=speed
+
+        elif userInput == 'd': 
+            if not colission(px,py+speed): py+=speed
 
     cordinates = [px, py]
     return cordinates
