@@ -65,33 +65,29 @@ def checkInput(px, py, GameMap):
         command = str(userInput[1])
         command.lower()
 
-        if command == 'w': 
-            if not colission(px-ammount, py): px-=ammount
-
-        elif command == 's': 
-            if not colission(px+ammount,py): px+=ammount
-
-        elif command == 'a': 
-            if not colission(px,py-ammount): py-=ammount
-
-        elif command == 'd': 
-            if not colission(px,py+ammount): py+=ammount
-
     except:
-        userInput.lower()
-        if userInput == 'q': sys.exit()
+        ammount = speed
+        command = userInput
+        command.lower()
 
-        elif userInput == 'w': 
-            if not colission(px-speed, py): px-=speed
+    # Movement if statements
+    if command == 'w': 
+        if not colission(px-ammount, py): px-=ammount
 
-        elif userInput == 's': 
-            if not colission(px+speed,py): px+=speed
+    elif command == 's': 
+        if not colission(px+ammount,py): px+=ammount
 
-        elif userInput == 'a': 
-            if not colission(px,py-speed): py-=speed
+    elif command == 'a': 
+        if not colission(px,py-ammount): py-=ammount
 
-        elif userInput == 'd': 
-            if not colission(px,py+speed): py+=speed
+    elif command == 'd': 
+        if not colission(px,py+ammount): py+=ammount
+
+    # Atempt on patching the out of bounds glitch
+    if ( px < -mapSx ): px += ammount # w
+    if ( px >  mapSx ): px -= ammount # s
+    if ( py < -mapSx ): py += ammount # a
+    if ( py >  mapSx ): py -= ammount # d
 
     cordinates = [px, py]
     return cordinates
